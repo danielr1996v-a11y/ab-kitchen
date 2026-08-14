@@ -96,8 +96,9 @@ body{margin:0;background:var(--shell-bg);color:var(--shell-fg);font-family:var(-
 .fill--cta{background:var(--live)}
 .fill--cta i{width:48%;height:2.4cqw;border-radius:99px;background:#fff}
 
-.caption{text-align:center;font-family:var(--font-display);font-size:3.9cqw;font-weight:400;
-  line-height:1.4;margin:0;opacity:0}
+.caption{text-align:center;font-family:var(--font-display);font-size:3.8cqw;font-weight:400;
+  line-height:1.38;margin:0}
+.caption span{display:block}
 .caption b{font-weight:700}
 
 /* ---------- מנוע התזמון ---------- */
@@ -142,13 +143,13 @@ body{margin:0;background:var(--shell-bg);color:var(--shell-fg);font-family:var(-
   <div class="card">
     <div class="stage-wrap">
       <div class="stage" id="stage" style="--total:5" role="img" tabindex="0"
-           aria-label="אנימציה: שלד האתר נסגר קודם כבלוקים מקווקווים, ורק אחר כך נכנס הצבע.">
+           aria-label="אנימציה: קודם כל מאפיינים — שלד האתר נסגר כבלוקים מקווקווים — ואחר כך מעצבים, והצבע נכנס.">
 
         <!-- מבנה ——— עיצוב -->
         <div class="steps">
-          <span class="s">מבנה<b class="fx" style="--t0:.35;--in:fxFade;--dur:.45s">מבנה</b></span>
+          <span class="s">מאפיינים<b class="fx" style="--t0:.35;--in:fxFade;--dur:.45s">מאפיינים</b></span>
           <span class="link fx" style="--t0:1.75;--in:fxDraw;--dur:.5s"></span>
-          <span class="s">עיצוב<b class="fx" style="--t0:2.15;--in:fxFade;--dur:.45s">עיצוב</b></span>
+          <span class="s">מעצבים<b class="fx" style="--t0:2.15;--in:fxFade;--dur:.45s">מעצבים</b></span>
         </div>
 
         <div class="holder">
@@ -183,7 +184,10 @@ body{margin:0;background:var(--shell-bg);color:var(--shell-fg);font-family:var(-
           </div>
         </div>
 
-        <p class="caption fx" style="--t0:3.9;--dur:.55s"><b>קודם מבנה.</b> אחר כך צבע.</p>
+        <p class="caption">
+          <span class="fx" style="--t0:3.8;--dur:.55s"><b>קודם כל מאפיינים,</b></span>
+          <span class="fx" style="--t0:4.08;--dur:.55s">אחר כך מעצבים</span>
+        </p>
       </div>
     </div>
 
