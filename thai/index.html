@@ -1,0 +1,1397 @@
+<title>תאית לכל יום</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Sarabun:wght@400;500;700&family=Bai+Jamjuree:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#EFF1EC; --surface:#FBFCF9; --surface2:#E5EAE1; --sunk:#E9EDE5;
+  --ink:#16211D; --muted:#5F6C65; --line:#D6DCD3;
+  --accent:#0E6B5C; --accent-soft:#D9EBE5; --accent-ink:#FFFFFF;
+  --saffron:#B8770F; --good:#2E7D53; --good-soft:#DCEEE2;
+  --bad:#AC4230; --bad-soft:#F6DED9;
+  --t0:#6C7C74; --t1:#3A6FA0; --t2:#B24A36; --t3:#AC7412; --t4:#6E52A0;
+  --r:14px; --shadow:0 1px 2px rgba(20,40,34,.06), 0 6px 20px -12px rgba(20,40,34,.28);
+  --font-he:'Heebo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-th:'Sarabun','Noto Sans Thai','Leelawadee UI','Thonburi',sans-serif;
+  --font-lat:'Bai Jamjuree','Heebo',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1613; --surface:#18221E; --surface2:#212D28; --sunk:#131C19;
+    --ink:#E6EDE9; --muted:#95A49D; --line:#2B3833;
+    --accent:#4FBFA5; --accent-soft:#1B3C36; --accent-ink:#05201A;
+    --saffron:#E0A544; --good:#5CC087; --good-soft:#173327;
+    --bad:#E07C66; --bad-soft:#3A2019;
+    --t0:#93A49D; --t1:#6FA9D6; --t2:#E0836C; --t3:#E0AC4D; --t4:#A98FDB;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1613; --surface:#18221E; --surface2:#212D28; --sunk:#131C19;
+  --ink:#E6EDE9; --muted:#95A49D; --line:#2B3833;
+  --accent:#4FBFA5; --accent-soft:#1B3C36; --accent-ink:#05201A;
+  --saffron:#E0A544; --good:#5CC087; --good-soft:#173327;
+  --bad:#E07C66; --bad-soft:#3A2019;
+  --t0:#93A49D; --t1:#6FA9D6; --t2:#E0836C; --t3:#E0AC4D; --t4:#A98FDB;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font-he); font-size:16px; line-height:1.55;
+  direction:rtl; -webkit-text-size-adjust:100%;
+}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;transition-duration:.001ms!important}}
+
+/* ---------- shell ---------- */
+.app{display:flex;flex-direction:column;min-height:100%}
+.topbar{
+  position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+  display:flex; align-items:center; gap:10px;
+  padding:10px 16px; background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:baseline;gap:8px;margin-inline-end:auto;min-width:0}
+.brand b{font-weight:700;font-size:1.02rem;letter-spacing:-.01em}
+.brand .thmark{font-family:var(--font-th);color:var(--accent);font-size:1.05rem;font-weight:700}
+.chip{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 9px;border-radius:999px;background:var(--surface2);
+  font-size:.78rem;font-weight:500;color:var(--muted);white-space:nowrap;
+}
+.chip b{color:var(--ink);font-variant-numeric:tabular-nums}
+.iconbtn{
+  display:grid;place-items:center;width:36px;height:36px;flex:0 0 auto;
+  border:1px solid var(--line);border-radius:10px;background:var(--surface);
+  cursor:pointer;font-size:1rem;
+}
+.iconbtn:hover{background:var(--surface2)}
+
+main{flex:1;width:100%;max-width:660px;margin:0 auto;padding:18px 16px 108px}
+
+.tabbar{
+  position:fixed;inset-inline:0;bottom:0;z-index:20;
+  display:flex;justify-content:center;gap:2px;
+  padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));
+  background:color-mix(in srgb,var(--bg) 92%,transparent);
+  backdrop-filter:blur(10px);border-top:1px solid var(--line);
+}
+.tabbar button{
+  flex:1 1 0;max-width:110px;display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:6px 2px;border:0;background:none;border-radius:10px;cursor:pointer;
+  font-size:.72rem;font-weight:500;color:var(--muted);
+}
+.tabbar button .ic{font-size:1.15rem;line-height:1}
+.tabbar button[aria-current="true"]{color:var(--accent);background:var(--accent-soft)}
+
+/* ---------- typography ---------- */
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.015em}
+h1{font-size:1.5rem;font-weight:700}
+h2{font-size:1.12rem;font-weight:700}
+h3{font-size:.95rem;font-weight:700}
+.eyebrow{
+  font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--muted);font-family:var(--font-lat);
+}
+.sub{color:var(--muted);font-size:.9rem}
+.stack{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+/* ---------- surfaces ---------- */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.panel.lift{box-shadow:var(--shadow)}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px 16px;border-radius:11px;border:1px solid var(--line);
+  background:var(--surface);cursor:pointer;font-weight:500;
+  min-height:44px;
+}
+.btn:hover{background:var(--surface2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);font-weight:700}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.big{width:100%;padding:15px;font-size:1.05rem}
+.btn.ghost{background:none}
+.btn.good{background:var(--good-soft);border-color:transparent;color:var(--good);font-weight:700}
+.btn.bad{background:var(--bad-soft);border-color:transparent;color:var(--bad);font-weight:700}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+.segmented{display:flex;gap:4px;padding:4px;background:var(--sunk);border-radius:12px;overflow-x:auto;scrollbar-width:none}
+.segmented::-webkit-scrollbar{display:none}
+.segmented button{
+  flex:0 0 auto;padding:8px 13px;border:0;border-radius:9px;background:none;
+  cursor:pointer;font-size:.86rem;font-weight:500;color:var(--muted);white-space:nowrap;min-height:38px;
+}
+.segmented button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:var(--shadow)}
+
+/* ---------- word rendering ---------- */
+.thai{
+  font-family:var(--font-th);direction:ltr;unicode-bidi:isolate;
+  line-height:1.7;font-weight:500;
+}
+.thai.xl{font-size:2.4rem;line-height:1.5;overflow-wrap:anywhere}
+.thai.lgx{font-size:1.8rem;line-height:1.55;overflow-wrap:anywhere}
+.thai.lg{font-size:1.55rem}
+.thai.md{font-size:1.18rem}
+.translit{color:var(--muted);font-size:.98rem;font-weight:500;letter-spacing:.01em}
+.translit .syl{white-space:nowrap}
+.translit .sep{opacity:.4}
+.tone{font-family:var(--font-lat);font-size:.72em;font-weight:600;vertical-align:.35em;padding-inline-start:1px}
+.t0{color:var(--t0)} .t1{color:var(--t1)} .t2{color:var(--t2)} .t3{color:var(--t3)} .t4{color:var(--t4)}
+.meaning{font-size:1.05rem;font-weight:500}
+.lit{font-size:.82rem;color:var(--muted);font-style:italic}
+.hidden-layer{filter:blur(6px);opacity:.55;cursor:pointer;user-select:none}
+
+.speakrow{display:flex;gap:6px}
+.speak{
+  display:grid;place-items:center;min-width:44px;height:44px;padding:0 12px;
+  border:1px solid var(--line);border-radius:11px;background:var(--surface);cursor:pointer;
+  font-size:1.05rem;flex:0 0 auto;
+}
+.speak:hover{background:var(--accent-soft);border-color:var(--accent)}
+.speak.slow{font-size:.8rem;font-weight:700;font-family:var(--font-lat);color:var(--muted)}
+.speak.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+/* ---------- lists ---------- */
+.items{display:flex;flex-direction:column;gap:8px}
+.item{
+  display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;
+}
+.item .txt{min-width:0;display:flex;flex-direction:column;gap:2px}
+.item .txt>*{overflow-wrap:anywhere}
+.star{border:0;background:none;cursor:pointer;font-size:1.05rem;padding:6px;line-height:1;opacity:.35;min-height:38px}
+.star.on{opacity:1}
+
+/* ---------- misc ---------- */
+.notice{
+  display:flex;gap:10px;align-items:flex-start;
+  background:var(--surface2);border:1px solid var(--line);border-left:0;border-right:3px solid var(--saffron);
+  border-radius:10px;padding:12px 14px;font-size:.88rem;
+}
+.notice b{display:block;margin-bottom:3px}
+.notice ul{margin:6px 0 0;padding-inline-start:18px}
+.notice li{margin:2px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 12px;text-align:center}
+.stat .n{font-size:1.45rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.stat .l{font-size:.74rem;color:var(--muted)}
+.progress{height:6px;border-radius:999px;background:var(--sunk);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .3s}
+.pill{display:inline-block;padding:3px 9px;border-radius:999px;font-size:.75rem;font-weight:700;background:var(--accent-soft);color:var(--accent)}
+.pill.warn{background:var(--bad-soft);color:var(--bad)}
+.divider{height:1px;background:var(--line);border:0;margin:0}
+.empty{text-align:center;color:var(--muted);padding:34px 12px}
+.empty .big{font-size:2rem;display:block;margin-bottom:6px}
+
+/* ---------- dialogue ---------- */
+.line{display:flex;gap:10px;align-items:flex-start;padding:11px 0}
+.line+.line{border-top:1px solid var(--line)}
+.who{
+  flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  font-size:.72rem;font-weight:700;background:var(--surface2);color:var(--muted);margin-top:3px;
+}
+.line.me .who{background:var(--accent-soft);color:var(--accent)}
+.line .body{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+
+/* ---------- sheet ---------- */
+.sheet-bg{position:fixed;inset:0;background:rgba(10,20,17,.45);z-index:40;display:grid;place-items:end center}
+.sheet{
+  width:100%;max-width:660px;background:var(--surface);border-radius:18px 18px 0 0;
+  padding:18px 16px calc(22px + env(safe-area-inset-bottom,0px));
+  max-height:86vh;overflow-y:auto;box-shadow:0 -10px 40px -18px rgba(0,0,0,.5);
+}
+.setting{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 0}
+.setting+.setting{border-top:1px solid var(--line)}
+.setting .lab{font-size:.94rem}
+.setting .lab small{display:block;color:var(--muted);font-size:.78rem}
+.switch{position:relative;width:48px;height:28px;flex:0 0 auto;border:0;border-radius:999px;background:var(--sunk);cursor:pointer;transition:background .2s}
+.switch i{position:absolute;top:3px;inset-inline-start:3px;width:22px;height:22px;border-radius:50%;background:var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.switch[aria-checked="true"]{background:var(--accent)}
+.switch[aria-checked="true"] i{transform:translateX(-20px)}
+
+@media (max-width:430px){
+  .thai.xl{font-size:2rem}
+  main{padding:14px 14px 104px}
+  .tabbar button{font-size:.68rem}
+}
+</style>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="thmark">ฝึกไทย</span>
+      <b>תאית לכל יום</b>
+    </div>
+    <span class="chip" id="streakChip" hidden>🔥 <b id="streakN">0</b> ימים</span>
+    <button class="iconbtn" id="btnSettings" aria-label="הגדרות">⚙︎</button>
+  </header>
+
+  <main id="view"></main>
+
+  <nav class="tabbar" id="tabbar" aria-label="ניווט ראשי"></nav>
+</div>
+
+<script>
+/* ============================================================
+   נתונים — כתב תאי, תעתיק עברי (הברות מופרדות ב־־) וטונים.
+   מחרוזת הטונים: ספרה לכל הברה.
+   0 בינוני · 1 נמוך · 2 יורד · 3 גבוה · 4 עולה
+   "~" בסוף משפט = חלקיק נימוס (ครับ לגבר, ค่ะ לאישה)
+   מפתח תעתיק: ק=k · כ=kh · ט=t · ת=th · פּ=p · פ=ph/f · בּ=b · ג'=j · צ'=ch · נג=ng
+   ============================================================ */
+const VOCAB = [
+ {key:"numbers", label:"מספרים", icon:"๗", items:[
+  ["ศูนย์","סוּן","4","אפס"],
+  ["หนึ่ง","נֶנְג","1","אחת"],
+  ["สอง","סוֹנְג","4","שתיים"],
+  ["สาม","סָאם","4","שלוש"],
+  ["สี่","סִי","1","ארבע"],
+  ["ห้า","הָא","2","חמש"],
+  ["หก","הוֹק","1","שש"],
+  ["เจ็ด","ג'ֶט","1","שבע"],
+  ["แปด","פֶּאט","1","שמונה"],
+  ["เก้า","קָאו","2","תשע"],
+  ["สิบ","סִיפּ","1","עשר"],
+  ["สิบเอ็ด","סִיפּ־אֶט","11","אחת עשרה"],
+  ["ยี่สิบ","יִי־סִיפּ","21","עשרים"],
+  ["ร้อย","רוֹי","3","מאה"],
+  ["พัน","פַאן","0","אלף"],
+  ["ครึ่ง","קְרֶנְג","2","חצי"],
+  ["บาท","בָּאט","1","באט (מטבע)"]
+ ]},
+ {key:"food", label:"אוכל ושתייה", icon:"๛", items:[
+  ["ข้าว","כָאו","2","אורז"],
+  ["ข้าวผัด","כָאו־פַאט","21","אורז מטוגן"],
+  ["ผัดไทย","פַאט־תַאי","10","פאד תאי"],
+  ["ต้มยำ","טום־יַאם","20","טום יאם"],
+  ["ส้มตำ","סום־טַאם","20","סלט פפאיה"],
+  ["ก๋วยเตี๋ยว","קוּאַי־טִיאַו","44","מרק אטריות"],
+  ["ไก่","קַי","1","עוף"],
+  ["หมู","מוּ","4","חזיר"],
+  ["เนื้อ","נוּאָה","3","בקר"],
+  ["กุ้ง","קוּנְג","2","שרימפס"],
+  ["ปลา","פְּלָה","0","דג"],
+  ["ไข่","כַי","1","ביצה"],
+  ["ผัก","פַאק","1","ירקות"],
+  ["ข้าวเหนียว","כָאו־נִיאַו","24","אורז דביק"],
+  ["ผลไม้","פוֹן־לַה־מַי","434","פירות"],
+  ["ขนม","כַה־נוֹם","14","חטיף / ממתק"],
+  ["น้ำ","נָאם","3","מים"],
+  ["น้ำเปล่า","נָאם־פְּלָאו","31","מים בבקבוק"],
+  ["น้ำแข็ง","נָאם־כֶנְג","34","קרח"],
+  ["กาแฟ","קָה־פֶה","00","קפה"],
+  ["ชา","צָ'ה","0","תה"],
+  ["เบียร์","בִּיָה","0","בירה"],
+  ["นม","נוֹם","0","חלב"],
+  ["เผ็ด","פֶט","1","חריף"],
+  ["หวาน","וָאן","4","מתוק"],
+  ["เค็ม","כֶם","0","מלוח"],
+  ["เปรี้ยว","פְּרִיאַו","2","חמוץ"],
+  ["อร่อย","אַ־רוֹי","11","טעים"]
+ ]},
+ {key:"time", label:"זמן", icon:"⏱", items:[
+  ["วันนี้","וַאן־נִי","03","היום"],
+  ["พรุ่งนี้","פְרוּנְג־נִי","23","מחר"],
+  ["เมื่อวาน","מוּאָה־וָאן","20","אתמול"],
+  ["ตอนนี้","טוֹן־נִי","03","עכשיו"],
+  ["เช้า","צָ'או","3","בוקר"],
+  ["บ่าย","בַּאי","1","אחר הצהריים"],
+  ["เย็น","יֶן","0","ערב מוקדם"],
+  ["กลางคืน","קְלָאנְג־כוּן","00","לילה"],
+  ["กี่โมง","קִי־מוֹנְג","10","מה השעה?"],
+  ["ชั่วโมง","צ'וּאָה־מוֹנְג","20","שעה"],
+  ["นาที","נָה־תִי","00","דקה"],
+  ["วัน","וַאן","0","יום"],
+  ["อาทิตย์","אָה־תִיט","03","שבוע"],
+  ["เดือน","דוּאָן","0","חודש"],
+  ["ปี","פִּי","0","שנה"]
+ ]},
+ {key:"places", label:"מקומות ותחבורה", icon:"⌖", items:[
+  ["สนามบิน","סַ־נָאם־בִּין","140","שדה תעופה"],
+  ["สถานี","סַ־תָא־נִי","140","תחנה"],
+  ["รถไฟฟ้า","רוֹט־פַאי־פָה","303","רכבת עילית (BTS)"],
+  ["รถไฟ","רוֹט־פַאי","30","רכבת"],
+  ["รถเมล์","רוֹט־מֶה","30","אוטובוס"],
+  ["แท็กซี่","תֶק־סִי","32","מונית"],
+  ["มอเตอร์ไซค์","מוֹ־טֶה־סַי","000","אופנוע"],
+  ["เรือ","רוּאָה","0","סירה"],
+  ["ตลาด","טַה־לָאט","11","שוק"],
+  ["ร้านอาหาร","רָאן־אָה־הָאן","304","מסעדה"],
+  ["ร้านสะดวกซื้อ","רָאן־סַ־דוּאַק־סוּ","3113","חנות נוחות"],
+  ["โรงแรม","רוֹנְג־רֶם","00","מלון"],
+  ["โรงพยาบาล","רוֹנְג־פַּה־יָה־בָּאן","0300","בית חולים"],
+  ["ร้านขายยา","רָאן־כָאי־יָה","340","בית מרקחת"],
+  ["ธนาคาร","תַה־נָה־כָאן","300","בנק"],
+  ["ตู้เอทีเอ็ม","טוּ־אֶה־תִי־אֶם","2000","כספומט"],
+  ["ชายหาด","צָ'אי־הָאט","01","חוף"],
+  ["วัด","וַאט","3","מקדש"],
+  ["ห้าง","הָאנְג","2","קניון"],
+  ["ถนน","תַה־נוֹן","14","רחוב"],
+  ["ซอย","סוֹי","0","סמטה"],
+  ["ห้องน้ำ","הוֹנְג־נָאם","23","שירותים"]
+ ]},
+ {key:"people", label:"אנשים", icon:"๏", items:[
+  ["ผม","פוֹם","4","אני (גבר)"],
+  ["ฉัน","צַ'אן","4","אני (אישה)"],
+  ["คุณ","כון","0","אתה / את"],
+  ["เขา","כָאו","4","הוא / היא"],
+  ["เรา","רַאו","0","אנחנו"],
+  ["คน","כון","0","אדם"],
+  ["ผู้ชาย","פוּ־צָ'אי","20","גבר"],
+  ["ผู้หญิง","פוּ־יִינְג","24","אישה"],
+  ["เด็ก","דֶק","1","ילד"],
+  ["เพื่อน","פוּאָן","2","חבר"],
+  ["ครอบครัว","כְרוֹפּ־כְרוּאָה","20","משפחה"],
+  ["แม่","מֶה","2","אמא"],
+  ["พ่อ","פוֹ","2","אבא"],
+  ["พี่","פִי","2","אח/ות מבוגר יותר"],
+  ["น้อง","נוֹנְג","3","אח/ות צעיר יותר"],
+  ["คนไทย","כון־תַאי","00","תאילנדי"],
+  ["ต่างชาติ","טָאנְג־צָ'אט","12","זר"]
+ ]},
+ {key:"verbs", label:"פעלים", icon:"→", items:[
+  ["กิน","קִין","0","לאכול"],
+  ["ดื่ม","דוּם","1","לשתות"],
+  ["ไป","פַּאי","0","ללכת / לנסוע"],
+  ["มา","מָה","0","לבוא"],
+  ["อยู่","יוּ","1","נמצא ב־"],
+  ["ทำ","תַאם","0","לעשות"],
+  ["พูด","פוּט","2","לדבר"],
+  ["เข้าใจ","כָאו־ג'ַאי","20","להבין"],
+  ["รู้","רוּ","3","לדעת"],
+  ["ซื้อ","סוּ","3","לקנות"],
+  ["ขาย","כָאי","4","למכור"],
+  ["จ่าย","ג'ַאי","1","לשלם"],
+  ["นอน","נוֹן","0","לישון"],
+  ["ชอบ","צ'וֹפּ","2","לאהוב"],
+  ["อยาก","יָאק","1","לרצות"],
+  ["ต้องการ","טוֹנְג־קָאן","20","להזדקק ל־"],
+  ["ช่วย","צ'וּאַי","2","לעזור"],
+  ["รอ","רוֹ","0","לחכות"],
+  ["หา","הָא","4","לחפש"],
+  ["เอา","אַאו","0","לקחת / רוצה"],
+  ["ให้","הַי","2","לתת"],
+  ["ขอ","כוֹ","4","לבקש"],
+  ["ดู","דוּ","0","להסתכל"],
+  ["ฟัง","פַאנְג","0","להקשיב"],
+  ["เปิด","פֶּט","1","לפתוח"],
+  ["ปิด","פִּיט","1","לסגור"]
+ ]},
+ {key:"adj", label:"תארים", icon:"≈", items:[
+  ["ดี","דִי","0","טוב"],
+  ["ใหญ่","יַי","1","גדול"],
+  ["เล็ก","לֶק","3","קטן"],
+  ["ใหม่","מַי","1","חדש"],
+  ["เก่า","קָאו","1","ישן"],
+  ["แพง","פֶנְג","0","יקר"],
+  ["ถูก","תוּק","1","זול"],
+  ["สวย","סוּאַי","4","יפה"],
+  ["ร้อน","רוֹן","3","חם"],
+  ["เย็น","יֶן","0","קר (למגע)"],
+  ["หนาว","נָאו","4","קר (מזג אוויר)"],
+  ["เยอะ","יֶה","3","הרבה"],
+  ["น้อย","נוֹי","3","מעט"],
+  ["ไกล","קְלַאי","0","רחוק"],
+  ["ใกล้","קְלַאי","2","קרוב"],
+  ["เร็ว","רֶאו","0","מהר"],
+  ["ช้า","צָ'ה","3","לאט"],
+  ["ยาก","יָאק","2","קשה"],
+  ["ง่าย","נְגַאי","2","קל"],
+  ["มาก","מָאק","2","מאוד"],
+  ["นิดหน่อย","נִיט־נוֹי","31","קצת"]
+ ]},
+ {key:"health", label:"גוף ובריאות", icon:"✚", items:[
+  ["หัว","הוּאָה","4","ראש"],
+  ["ท้อง","תוֹנְג","3","בטן"],
+  ["ตา","טָה","0","עין"],
+  ["หู","הוּ","4","אוזן"],
+  ["ปาก","פָּאק","1","פה"],
+  ["มือ","מוּ","0","יד"],
+  ["เท้า","תָאו","3","רגל"],
+  ["ฟัน","פַאן","0","שן"],
+  ["เจ็บ","ג'ֶפּ","1","כואב"],
+  ["ปวด","פּוּאַט","1","כאב (עמום)"],
+  ["ไข้","כַי","2","חום"],
+  ["ท้องเสีย","תוֹנְג־סִיָה","34","שלשול"],
+  ["แพ้","פֶה","3","אלרגיה"],
+  ["ยา","יָה","0","תרופה"],
+  ["ยาแก้ปวด","יָה־קֶה־פּוּאַט","021","משכך כאבים"],
+  ["หมอ","מוֹ","4","רופא"],
+  ["ตำรวจ","טַאם־רוּאַט","01","משטרה"]
+ ]}
+];
+
+const PHRASES = [
+ {key:"basics", label:"ברכות ונימוס", icon:"🙏", items:[
+  ["สวัสดี~","סַ־וַאט־דִי","110","שלום / להתראות"],
+  ["ขอบคุณ~","כוֹפּ־כון","10","תודה"],
+  ["ขอโทษ~","כוֹ־תוֹט","42","סליחה"],
+  ["ไม่เป็นไร~","מַי־פֶּן־רַאי","200","אין בעיה / לא נורא"],
+  ["สบายดีไหม~","סַ־בָּאי־דִי־מַי","1004","מה שלומך?"],
+  ["สบายดี~","סַ־בָּאי־דִי","100","אני בסדר"],
+  ["คุณชื่ออะไร~","כון־צ'וּ־אַ־רַאי","0210","איך קוראים לך?"],
+  ["ผมชื่อ...","פוֹם־צ'וּ","42","קוראים לי..."],
+  ["ยินดีที่ได้รู้จัก~","יִין־דִי־תִי־דַי־רוּ־ג'ַאק","002231","נעים להכיר"],
+  ["พูดไทยไม่เก่ง~","פוּט־תַאי־מַי־קֶנְג","2021","אני לא מדבר תאית טוב"],
+  ["ไม่เข้าใจ~","מַי־כָאו־ג'ַאי","220","אני לא מבין"],
+  ["พูดช้าๆ ได้ไหม~","פוּט־צָ'ה־צָ'ה־דַי־מַי","23324","אפשר לדבר לאט?"],
+  ["พูดภาษาอังกฤษได้ไหม~","פוּט־פָה־סָא־אַנְג־קְרִיט־דַי־מַי","2040124","אתה מדבר אנגלית?"],
+  ["นี่เรียกว่าอะไร~","נִי־רִיאַק־וָה־אַ־רַאי","22210","איך קוראים לזה?"],
+  ["ได้~","דַי","2","אפשר / בסדר"],
+  ["ไม่ได้~","מַי־דַי","22","אי אפשר"],
+  ["ไม่ต้อง~","מַי־טוֹנְג","22","לא צריך"],
+  ["ตกลง~","טוֹק־לוֹנְג","10","סגור / מוסכם"],
+  ["ลาก่อน~","לָה־קוֹן","01","להתראות"],
+  ["โชคดี~","צ'וֹק־דִי","30","בהצלחה"]
+ ]},
+ {key:"taxi", label:"מונית ותחבורה", icon:"🛺", items:[
+  ["ไปสนามบิน~","פַּאי־סַ־נָאם־בִּין","0140","לשדה התעופה בבקשה"],
+  ["เปิดมิเตอร์ได้ไหม~","פֶּט־מִי־טֶה־דַי־מַי","13224","אפשר להפעיל מונה?"],
+  ["ไปที่นี่~","פַּאי־תִי־נִי","022","לכאן בבקשה"],
+  ["ไปที่นี่เท่าไหร่~","פַּאי־תִי־נִי־תַאו־רַי","02221","כמה עולה לכאן?"],
+  ["จอดตรงนี้~","ג'וֹט־טְרוֹנְג־נִי","103","תעצור כאן"],
+  ["เลี้ยวซ้าย~","לִיאַו־סָאי","33","פנה שמאלה"],
+  ["เลี้ยวขวา~","לִיאַו־כְוָה","34","פנה ימינה"],
+  ["ตรงไป~","טְרוֹנְג־פַּאי","00","ישר"],
+  ["ช้าๆ หน่อย~","צָ'ה־צָ'ה־נוֹי","331","לאט יותר בבקשה"],
+  ["รอสักครู่~","רוֹ־סַק־כְרוּ","012","חכה רגע"],
+  ["ถึงแล้ว~","תֶנְג־לֶאו","43","הגענו"]
+ ]},
+ {key:"market", label:"שוק ומיקוח", icon:"🧺", items:[
+  ["อันนี้เท่าไหร่~","אַן־נִי־תַאו־רַי","0321","כמה זה עולה?"],
+  ["แพงไป~","פֶנְג־פַּאי","00","יקר מדי"],
+  ["ลดหน่อยได้ไหม~","לוֹט־נוֹי־דַי־מַי","3124","אפשר הנחה?"],
+  ["เอาอันนี้~","אַאו־אַן־נִי","003","אני רוצה את זה"],
+  ["ไม่เอา~","מַי־אַאו","20","לא, תודה"],
+  ["ขอดูหน่อย~","כוֹ־דוּ־נוֹי","401","אפשר להסתכל?"],
+  ["มีสีอื่นไหม~","מִי־סִי־אוּן־מַי","0414","יש בצבע אחר?"],
+  ["มีใหญ่กว่านี้ไหม~","מִי־יַי־קְוָה־נִי־מַי","01134","יש יותר גדול?"],
+  ["จ่ายด้วยบัตรได้ไหม~","ג'ַאי־דוּאַי־בַּאט־דַי־מַי","12124","אפשר לשלם בכרטיס?"],
+  ["ขอใบเสร็จ~","כוֹ־בַּאי־סֶט","401","קבלה בבקשה"]
+ ]},
+ {key:"eat", label:"מסעדה ואוכל רחוב", icon:"🍜", items:[
+  ["ขอเมนู~","כוֹ־מֶה־נוּ","400","תפריט בבקשה"],
+  ["ไม่เผ็ดนะ~","מַי־פֶט־נַה","213","בלי חריף בבקשה"],
+  ["เผ็ดน้อยๆ~","פֶט־נוֹי־נוֹי","133","קצת חריף"],
+  ["ไม่ใส่น้ำตาล~","מַי־סַי־נָאם־טָאן","2130","בלי סוכר"],
+  ["ไม่ใส่น้ำแข็ง~","מַי־סַי־נָאם־כֶנְג","2134","בלי קרח"],
+  ["ผมไม่กินเนื้อสัตว์~","פוֹם־מַי־קִין־נוּאָה־סַט","42031","אני לא אוכל בשר"],
+  ["ผมแพ้อาหารทะเล~","פוֹם־פֶה־אָה־הָאן־תַה־לֶה","430430","יש לי אלרגיה לפירות ים"],
+  ["ขอน้ำเปล่าหนึ่งขวด~","כוֹ־נָאם־פְּלָאו־נֶנְג־כוּאַט","43111","בקבוק מים בבקשה"],
+  ["กินที่นี่~","קִין־תִי־נִי","022","לאכול כאן"],
+  ["เอากลับบ้าน~","אַאו־קְלַפּ־בָּאן","012","לקחת (טייק אווי)"],
+  ["อร่อยมาก~","אַ־רוֹי־מָאק","112","טעים מאוד"],
+  ["เช็คบิล~","צֶ'ק־בִּין","30","חשבון בבקשה"]
+ ]},
+ {key:"hotel", label:"מלון", icon:"🛎", items:[
+  ["ผมจองห้องไว้~","פוֹם־ג'וֹנְג־הוֹנְג־וַאי","4023","יש לי הזמנה"],
+  ["เช็คอิน~","צֶ'ק־אִין","30","צ'ק אין"],
+  ["มีห้องว่างไหม~","מִי־הוֹנְג־וָאנְג־מַי","0224","יש חדר פנוי?"],
+  ["คืนละเท่าไหร่~","כוּן־לַה־תַאו־רַי","0321","כמה ללילה?"],
+  ["ขอดูห้องก่อนได้ไหม~","כוֹ־דוּ־הוֹנְג־קוֹן־דַי־מַי","402124","אפשר לראות את החדר קודם?"],
+  ["แอร์เสีย~","אֶה־סִיָה","04","המזגן לא עובד"],
+  ["ไม่มีน้ำร้อน~","מַי־מִי־נָאם־רוֹן","2033","אין מים חמים"],
+  ["เช็คเอาท์กี่โมง~","צֶ'ק־אָאוט־קִי־מוֹנְג","3310","מתי הצ'ק אאוט?"]
+ ]},
+ {key:"help", label:"בעיות ורפואה", icon:"⚠", items:[
+  ["ช่วยด้วย~","צ'וּאַי־דוּאַי","22","הצילו"],
+  ["ผมไม่สบาย~","פוֹם־מַי־סַ־בָּאי","4210","אני לא מרגיש טוב"],
+  ["ปวดท้อง~","פּוּאַט־תוֹנְג","13","כואבת לי הבטן"],
+  ["ผมทำกระเป๋าหาย~","פוֹם־תַאם־קְרַה־פָּאו־הָאי","40144","איבדתי את התיק"],
+  ["เรียกตำรวจหน่อย~","רִיאַק־טַאם־רוּאַט־נוֹי","2011","תקרא למשטרה"],
+  ["โรงพยาบาลอยู่ที่ไหน~","רוֹנְג־פַּה־יָה־בָּאן־יוּ־תִי־נַי","0300124","איפה בית החולים?"],
+  ["ผมหลงทาง~","פוֹם־לוֹנְג־תָאנְג","440","הלכתי לאיבוד"]
+ ]},
+ {key:"dir", label:"כיוונים", icon:"🧭", items:[
+  ["ห้องน้ำอยู่ที่ไหน~","הוֹנְג־נָאם־יוּ־תִי־נַי","23124","איפה השירותים?"],
+  ["อยู่ตรงไหน~","יוּ־טְרוֹנְג־נַי","104","איפה זה נמצא?"],
+  ["ไกลไหม~","קְלַאי־מַי","04","זה רחוק?"],
+  ["เดินไปได้ไหม~","דֶן־פַּאי־דַי־מַי","0024","אפשר ללכת ברגל?"]
+ ]}
+];
+
+const DIALOGS = [
+ {key:"d-taxi", label:"מונית לשדה התעופה", icon:"🛺", lines:[
+  ["me","ไปสนามบิน~","פַּאי־סַ־נָאם־בִּין","0140","לשדה התעופה בבקשה"],
+  ["them","ได้ครับ เชิญเลย","דַי־קְראפּ־צֶ'ן־לֶי","2300","אפשר, בבקשה תיכנס"],
+  ["me","เปิดมิเตอร์ได้ไหม~","פֶּט־מִי־טֶה־דַי־מַי","13224","אפשר להפעיל מונה?"],
+  ["them","ไม่ใช้มิเตอร์ครับ สามร้อยบาท","מַי־צָ'אי־מִי־טֶה־קְראפּ־סָאם־רוֹי־בָּאט","23323431","בלי מונה, 300 באט"],
+  ["me","แพงไป~","פֶנְג־פַּאי","00","יקר מדי"],
+  ["me","สองร้อยได้ไหม~","סוֹנְג־רוֹי־דַי־מַי","4324","200 אפשר?"],
+  ["them","สองร้อยห้าสิบครับ","סוֹנְג־רוֹי־הָא־סִיפּ־קְראפּ","43213","250"],
+  ["me","ตกลง~","טוֹק־לוֹנְג","10","סגור"],
+  ["me","จอดตรงนี้~","ג'וֹט־טְרוֹנְג־נִי","103","תעצור כאן"]
+ ]},
+ {key:"d-eat", label:"הזמנה במסעדה", icon:"🍜", lines:[
+  ["them","รับอะไรดีคะ","רַאפּ־אַ־רַאי־דִי־קַה","31003","מה תרצה?"],
+  ["me","ขอเมนู~","כוֹ־מֶה־נוּ","400","תפריט בבקשה"],
+  ["me","เอาผัดไทยกุ้ง~","אַאו־פַאט־תַאי־קוּנְג","0102","פאד תאי עם שרימפס"],
+  ["me","ไม่เผ็ดนะ~","מַי־פֶט־נַה","213","בלי חריף בבקשה"],
+  ["them","รับน้ำอะไรคะ","רַאפּ־נָאם־אַ־רַאי־קַה","33103","מה תרצה לשתות?"],
+  ["me","ขอน้ำเปล่าหนึ่งขวด~","כוֹ־נָאם־פְּלָאו־נֶנְג־כוּאַט","43111","בקבוק מים בבקשה"],
+  ["me","อร่อยมาก~","אַ־רוֹי־מָאק","112","טעים מאוד"],
+  ["me","เช็คบิล~","צֶ'ק־בִּין","30","חשבון בבקשה"]
+ ]},
+ {key:"d-market", label:"מיקוח בשוק", icon:"🧺", lines:[
+  ["me","อันนี้เท่าไหร่~","אַן־נִי־תַאו־רַי","0321","כמה זה עולה?"],
+  ["them","สองร้อยบาทค่ะ","סוֹנְג־רוֹי־בָּאט־קַה","4312","200 באט"],
+  ["me","ลดหน่อยได้ไหม~","לוֹט־נוֹי־דַי־מַי","3124","אפשר הנחה?"],
+  ["them","ร้อยห้าสิบค่ะ","רוֹי־הָא־סִיפּ־קַה","3212","150"],
+  ["me","ร้อยได้ไหม~","רוֹי־דַי־מַי","324","100 אפשר?"],
+  ["them","ได้ค่ะ","דַי־קַה","22","אפשר"],
+  ["me","เอาอันนี้~","אַאו־אַן־נִי","003","אני רוצה את זה"],
+  ["me","ขอบคุณ~","כוֹפּ־כון","10","תודה"]
+ ]},
+ {key:"d-hotel", label:"צ׳ק אין במלון", icon:"🛎", lines:[
+  ["me","สวัสดี~","סַ־וַאט־דִי","110","שלום"],
+  ["me","ผมจองห้องไว้~","פוֹם־ג'וֹנְג־הוֹנְג־וַאי","4023","יש לי הזמנה"],
+  ["them","ขอพาสปอร์ตหน่อยค่ะ","כוֹ־פָאט־סַ־פּוֹט־נוֹי־קַה","431112","דרכון בבקשה"],
+  ["me","นี่~","נִי","2","הנה"],
+  ["them","ห้องสามศูนย์สองค่ะ","הוֹנְג־סָאם־סוּן־סוֹנְג־קַה","24442","חדר 302"],
+  ["me","เช็คเอาท์กี่โมง~","צֶ'ק־אָאוט־קִי־מוֹנְג","3310","מתי הצ׳ק אאוט?"],
+  ["them","เที่ยงค่ะ","תִיאַנְג־קַה","22","בצהריים"],
+  ["me","ขอบคุณ~","כוֹפּ־כון","10","תודה"]
+ ]},
+ {key:"d-dir", label:"שאלת דרך", icon:"🧭", lines:[
+  ["me","ขอโทษ~","כוֹ־תוֹט","42","סליחה"],
+  ["me","ห้องน้ำอยู่ที่ไหน~","הוֹנְג־נָאם־יוּ־תִי־נַי","23124","איפה השירותים?"],
+  ["them","ตรงไปแล้วเลี้ยวขวาค่ะ","טְרוֹנְג־פַּאי־לֶאו־לִיאַו־כְוָה־קַה","003342","ישר ואז ימינה"],
+  ["me","ไกลไหม~","קְלַאי־מַי","04","זה רחוק?"],
+  ["them","ไม่ไกลค่ะ ห้าสิบเมตร","מַי־קְלַאי־קַה־הָא־סִיפּ־מֶט","202213","לא רחוק, 50 מטר"],
+  ["me","ขอบคุณ~","כוֹפּ־כון","10","תודה"]
+ ]},
+ {key:"d-pharm", label:"בית מרקחת", icon:"✚", lines:[
+  ["me","ผมปวดท้อง~","פוֹם־פּוּאַט־תוֹנְג","413","כואבת לי הבטן"],
+  ["them","ท้องเสียไหมคะ","תוֹנְג־סִיָה־מַי־קַה","3443","יש שלשול?"],
+  ["me","ใช่~","צַ'אי","2","כן"],
+  ["them","กินยานี้ วันละสามครั้งค่ะ","קִין־יָה־נִי־וַאן־לַה־סָאם־כְראנְג־קַה","00303432","קח את התרופה שלוש פעמים ביום"],
+  ["me","หลังอาหารไหม~","לַאנְג־אָה־הָאן־מַי","4044","אחרי האוכל?"],
+  ["them","ค่ะ หลังอาหารค่ะ","קַה־לַאנְג־אָה־הָאן־קַה","24042","כן, אחרי האוכל"],
+  ["me","ขอบคุณ~","כוֹפּ־כון","10","תודה"]
+ ]}
+];
+
+const TONE_SETS = [
+ {title:"ขาว · ข่าว · ข้าว", items:[
+  ["ขาว","כָאו","4","לבן"],["ข่าว","כָאו","1","חדשות"],["ข้าว","כָאו","2","אורז"]]},
+ {title:"ไม้ · ใหม่ · ไหม · ไม่", items:[
+  ["ไม้","מַי","3","עץ"],["ใหม่","מַי","1","חדש"],["ไหม","מַי","4","משי / סימן שאלה"],["ไม่","מַי","2","לא"]]},
+ {title:"เสือ · เสื้อ · เสื่อ", items:[
+  ["เสือ","סוּאָה","4","נמר"],["เสื้อ","סוּאָה","2","חולצה"],["เสื่อ","סוּאָה","1","מחצלת"]]},
+ {title:"มา · ม้า · หมา", items:[
+  ["มา","מָה","0","לבוא"],["ม้า","מָה","3","סוס"],["หมา","מָה","4","כלב"]]},
+ {title:"ไกล · ใกล้", items:[
+  ["ไกล","קְלַאי","0","רחוק"],["ใกล้","קְלַאי","2","קרוב"]]},
+ {title:"ยา · ย่า · อย่า", items:[
+  ["ยา","יָה","0","תרופה"],["ย่า","יָה","2","סבתא (מצד אבא)"],["อย่า","יָה","1","אל תעשה"]]}
+];
+
+const PRON_SETS = [
+ {title:"ป מול พ — p לא נשוף מול ph נשוף", items:[
+  ["ปา","פָּה","0","לזרוק"],["พา","פָה","0","להוביל"]]},
+ {title:"ต מול ท — t לא נשוף מול th נשוף", items:[
+  ["ตา","טָה","0","עין"],["ทา","תָה","0","למרוח"]]},
+ {title:"ก מול ค — k לא נשוף מול kh נשוף", items:[
+  ["กา","קָה","0","עורב"],["คา","כָה","0","תקוע"]]},
+ {title:"ง — הצליל ng בתחילת מילה", items:[
+  ["งู","נְגוּ","0","נחש"],["เงิน","נְגֶן","0","כסף"],["ง่าย","נְגַאי","2","קל"]]}
+];
+
+/* ============================================================
+   מצב, שמירה, קול
+   ============================================================ */
+const TONE_GLYPH = ["–","ˎ","ˆ","ˊ","ˇ"];
+const TONE_NAME  = ["בינוני","נמוך","יורד","גבוה","עולה"];
+const BOX_DAYS   = [0,1,3,7,21];
+const STORE_KEY  = "thai-daily-v1";
+
+const defaults = () => ({
+  v:1, ts:0, gender:"m", theme:"auto",
+  showTranslit:true, showMean:true,
+  newPerDay:20,
+  srs:{}, star:{}, today:{date:"",newN:0},
+  streak:{n:0,last:""},
+  quizBest:0, toneStats:{}
+});
+let state = defaults();
+
+const todayStr = () => new Date().toLocaleDateString("sv-SE");
+const addDays = (n) => { const d=new Date(); d.setDate(d.getDate()+n); return d.toLocaleDateString("sv-SE"); };
+
+function readLocal(){
+  try{ const raw=localStorage.getItem(STORE_KEY); if(raw) return JSON.parse(raw); }catch(e){}
+  return null;
+}
+function adopt(obj){
+  if(!obj || typeof obj!=="object") return;
+  const base = defaults();
+  state = Object.assign(base, obj, {
+    srs:Object.assign({},obj.srs||{}),
+    star:Object.assign({},obj.star||{}),
+    today:Object.assign(base.today,obj.today||{}),
+    streak:Object.assign(base.streak,obj.streak||{}),
+    toneStats:Object.assign({},obj.toneStats||{})
+  });
+}
+adopt(readLocal());
+
+let remoteDoc = null, saveTimer = null;
+function save(){
+  state.ts = Date.now();
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    if(!remoteDoc) return;
+    try{ Promise.resolve(remoteDoc.set(JSON.parse(JSON.stringify(state)))).catch(()=>{}); }catch(e){}
+  }, 1200);
+}
+async function initRemote(){
+  try{
+    const db = window.claude && window.claude.use ? await window.claude.use("db") : null;
+    if(!db) return;
+    remoteDoc = db.doc("data/users/me/progress");
+    const snap = await remoteDoc.get();
+    const data = snap && (snap.data || snap.value || (snap.exists===false ? null : snap));
+    if(data && typeof data==="object" && (data.ts||0) > (state.ts||0)){
+      adopt(data); render();
+    }else if(state.ts){ save(); }
+  }catch(e){ /* ממשיכים עם אחסון מקומי */ }
+}
+
+/* --- קול --- */
+let thVoice=null, voicesChecked=false, speaking=null;
+function pickVoice(){
+  if(!("speechSynthesis" in window)) return;
+  const all = window.speechSynthesis.getVoices() || [];
+  if(!all.length) return;
+  const th = all.filter(v => (v.lang||"").toLowerCase().replace("_","-").startsWith("th"));
+  thVoice = th.find(v=>v.localService) || th[0] || null;
+  voicesChecked = true;
+}
+if("speechSynthesis" in window){
+  pickVoice();
+  window.speechSynthesis.onvoiceschanged = () => { pickVoice(); updateVoiceNotice(); };
+  setTimeout(()=>{ pickVoice(); voicesChecked=true; updateVoiceNotice(); }, 1600);
+}
+const voiceReady = () => !!thVoice;
+
+let warmed=false;
+function warmUp(){
+  if(warmed || !("speechSynthesis" in window)) return;
+  warmed = true;
+  try{ const u=new SpeechSynthesisUtterance(" "); u.volume=0; window.speechSynthesis.speak(u); }catch(e){}
+}
+document.addEventListener("pointerdown", warmUp, {once:true});
+
+function speak(text, slow){
+  if(!("speechSynthesis" in window)) return;
+  warmUp();
+  try{
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "th-TH";
+    if(thVoice) u.voice = thVoice;
+    u.rate = slow ? 0.5 : 0.92;
+    u.pitch = 1;
+    window.speechSynthesis.speak(u);
+    speaking = u;
+  }catch(e){}
+}
+function speakSeq(texts, i){
+  i = i||0;
+  if(i>=texts.length || !("speechSynthesis" in window)) return;
+  const u = new SpeechSynthesisUtterance(texts[i]);
+  u.lang="th-TH"; if(thVoice) u.voice=thVoice; u.rate=0.88;
+  u.onend = () => setTimeout(()=>speakSeq(texts,i+1), 380);
+  window.speechSynthesis.speak(u);
+}
+
+/* ============================================================
+   בניית פריטים
+   ============================================================ */
+const particle = () => state.gender==="m" ? "ครับ" : "ค่ะ";
+const particleHe = () => state.gender==="m" ? "קְראפּ" : "קַה";
+const particleTone = () => state.gender==="m" ? "3" : "2";
+
+function resolve(item){
+  const hasP = item.raw.indexOf("~") >= 0;
+  return {
+    th:   hasP ? item.raw.replace("~", particle()) : item.raw,
+    he:   hasP ? item.he + "־" + particleHe() : item.he,
+    t:    hasP ? item.t + particleTone() : item.t,
+    mean: item.mean
+  };
+}
+
+const ITEMS = [];
+const GROUPS = [];
+(function build(){
+  const seen = {};
+  const push = (kind, group, label, icon, row) => {
+    let id = row[0];
+    if(seen[id]) id = id + "#" + (++seen[row[0]]);
+    else seen[row[0]] = 1;
+    const it = {id, kind, group, groupLabel:label, icon, raw:row[0], he:row[1], t:row[2], mean:row[3]};
+    ITEMS.push(it);
+    return it;
+  };
+  PHRASES.forEach(g=>{
+    const list = g.items.map(r=>push("p", g.key, g.label, g.icon, r));
+    GROUPS.push({key:g.key, label:g.label, icon:g.icon, kind:"p", items:list});
+  });
+  VOCAB.forEach(g=>{
+    const list = g.items.map(r=>push("w", g.key, g.label, g.icon, r));
+    GROUPS.push({key:g.key, label:g.label, icon:g.icon, kind:"w", items:list});
+  });
+})();
+const byId = {}; ITEMS.forEach(i=>byId[i.id]=i);
+
+/* ============================================================
+   SRS
+   ============================================================ */
+function cardState(id){ return state.srs[id] || null; }
+function isDue(id){
+  const c = cardState(id);
+  if(!c) return false;
+  return c.d <= todayStr();
+}
+function dueItems(){ return ITEMS.filter(i=>isDue(i.id)); }
+function newItems(){ return ITEMS.filter(i=>!cardState(i.id)); }
+function newLeftToday(){
+  if(state.today.date !== todayStr()){ state.today = {date:todayStr(), newN:0}; }
+  return Math.max(0, state.newPerDay - state.today.newN);
+}
+function knownCount(){ return Object.values(state.srs).filter(c=>c.b>=4).length; }
+function learningCount(){ return Object.values(state.srs).filter(c=>c.b<4).length; }
+
+function answerCard(id, ok){
+  const prev = cardState(id);
+  if(!prev){
+    if(state.today.date !== todayStr()) state.today = {date:todayStr(), newN:0};
+    state.today.newN++;
+  }
+  const box = prev ? prev.b : 1;
+  const next = ok ? Math.min(5, box+1) : 1;
+  state.srs[id] = { b:next, d: addDays(ok ? BOX_DAYS[next-1] : 0) };
+  bumpStreak();
+  save();
+}
+function bumpStreak(){
+  const t = todayStr();
+  if(state.streak.last === t) return;
+  state.streak.n = (state.streak.last === addDays(-1)) ? state.streak.n+1 : 1;
+  state.streak.last = t;
+}
+
+/* ============================================================
+   עזרי רינדור
+   ============================================================ */
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function translitHTML(he, t){
+  const syl = String(he).split("־");
+  const tones = String(t||"");
+  const parts = syl.map((s,i)=>{
+    const d = tones[i];
+    const g = (d!==undefined && +d>0 && TONE_GLYPH[+d]!==undefined)
+      ? '<span class="tone t'+(+d)+'" aria-hidden="true">'+TONE_GLYPH[+d]+'</span>' : "";
+    return '<span class="syl">'+esc(s)+g+'</span>';
+  });
+  return parts.join('<span class="sep" aria-hidden="true">־</span>');
+}
+
+function mixed(s){
+  return esc(s).replace(/[\u0E00-\u0E7F]+/g, m => '<span dir="ltr" style="unicode-bidi:isolate">'+m+'</span>');
+}
+function thSize(text){ return text.length > 16 ? "lgx" : "xl"; }
+
+function speakBtns(text, extraClass){
+  return '<div class="speakrow'+(extraClass?" "+extraClass:"")+'">'
+    + '<button class="speak" data-say="'+esc(text)+'" aria-label="השמע">🔊</button>'
+    + '<button class="speak slow" data-say="'+esc(text)+'" data-slow="1" aria-label="השמע לאט">לאט</button>'
+    + '</div>';
+}
+
+function itemRow(it, opts){
+  opts = opts || {};
+  const r = resolve(it);
+  const starred = !!state.star[it.id];
+  const c = cardState(it.id);
+  return '<div class="item" data-id="'+esc(it.id)+'">'
+    + '<div class="txt">'
+      + '<div class="thai md">'+esc(r.th)+'</div>'
+      + (state.showTranslit ? '<div class="translit">'+translitHTML(r.he,r.t)+'</div>' : "")
+      + (state.showMean ? '<div class="meaning">'+esc(r.mean)+'</div>' : "")
+      + (opts.showBox && c ? '<div class="lit">קופסה '+c.b+' · חזרה '+c.d+'</div>' : "")
+    + '</div>'
+    + '<div class="row" style="flex-wrap:nowrap;gap:4px">'
+      + '<button class="star'+(starred?" on":"")+'" data-star="'+esc(it.id)+'" aria-label="סמן כקשה" aria-pressed="'+starred+'">★</button>'
+      + speakBtns(r.th)
+    + '</div>'
+  + '</div>';
+}
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function sample(arr,n,exclude){
+  const pool = arr.filter(x=>x!==exclude);
+  return shuffle(pool).slice(0,n);
+}
+
+/* ============================================================
+   ניווט
+   ============================================================ */
+const TABS = [
+  {key:"home",  label:"בית",    ic:"🏠"},
+  {key:"learn", label:"לימוד",  ic:"📖"},
+  {key:"drill", label:"תרגול",  ic:"🎯"},
+  {key:"talk",  label:"שיחות",  ic:"💬"},
+  {key:"tones", label:"טונים",  ic:"🎵"}
+];
+let route = {tab:"home", group:GROUPS[0].key, mode:"flash", dialog:null, quizScope:"all"};
+const view = document.getElementById("view");
+
+function renderTabs(){
+  document.getElementById("tabbar").innerHTML = TABS.map(t =>
+    '<button data-tab="'+t.key+'" aria-current="'+(route.tab===t.key)+'">'
+    + '<span class="ic" aria-hidden="true">'+t.ic+'</span>'+t.label+'</button>'
+  ).join("");
+}
+
+function voiceNoticeHTML(force){
+  if(!force && (voiceReady() || !voicesChecked)) return "";
+  if(!("speechSynthesis" in window))
+    return '<div class="notice" id="voiceNotice"><div><b>אין תמיכה בהקראה בדפדפן הזה</b>נסה כרום, ספארי או אדג׳. כל שאר התרגולים עובדים כרגיל.</div></div>';
+  return '<div class="notice" id="voiceNotice"><div><b>לא נמצא קול תאי במכשיר</b>'
+    + 'כל התרגולים עובדים, אבל בלי שמע. להוספת קול:'
+    + '<ul>'
+    + '<li><b>אנדרואיד:</b> הגדרות → נגישות → פלט טקסט לדיבור → Google → התקנת שפה → ไทย</li>'
+    + '<li><b>אייפון:</b> Settings → Accessibility → Spoken Content → Voices → Thai</li>'
+    + '<li><b>מחשב:</b> כרום מוריד קול תאי אוטומטית כשיש אינטרנט; ברפרש הבעיה בדרך כלל נפתרת</li>'
+    + '</ul></div></div>';
+}
+
+/* ---------- בית ---------- */
+function viewHome(){
+  const due = dueItems().length;
+  const fresh = Math.min(newLeftToday(), newItems().length);
+  const total = due + fresh;
+  const starred = Object.keys(state.star).filter(k=>state.star[k]).length;
+  const pct = Math.round(100 * knownCount() / ITEMS.length);
+  const top = GROUPS.find(g=>g.key==="basics").items.slice(0,4);
+
+  return '<div class="stack">'
+    + voiceNoticeHTML()
+    + '<section class="panel lift stack" style="gap:12px">'
+      + '<div class="row" style="justify-content:space-between">'
+        + '<span class="eyebrow">התרגול של היום</span>'
+        + '<span class="chip">יעד יומי <b>'+state.newPerDay+'</b> חדשות</span>'
+      + '</div>'
+      + '<h1>' + (total ? total + " כרטיסים ממתינים" : "סיימת להיום") + '</h1>'
+      + '<p class="sub" style="margin:0">'
+        + (total ? due + " לחזרה · " + fresh + " חדשים" : "אפשר תמיד להוסיף סבב חידון או תרגול האזנה.")
+      + '</p>'
+      + '<div class="progress"><i style="width:'+pct+'%"></i></div>'
+      + '<p class="sub" style="margin:0">'+knownCount()+' מתוך '+ITEMS.length+' פריטים כבר יושבים טוב ('+pct+'%)</p>'
+      + '<button class="btn primary big" data-go="drill:flash">'+(total?"התחל תרגול":"תרגול נוסף")+'</button>'
+    + '</section>'
+
+    + '<div class="stats">'
+      + '<div class="stat"><div class="n">'+knownCount()+'</div><div class="l">יודע</div></div>'
+      + '<div class="stat"><div class="n">'+learningCount()+'</div><div class="l">בלמידה</div></div>'
+      + '<div class="stat"><div class="n">'+starred+'</div><div class="l">מסומן ★</div></div>'
+    + '</div>'
+
+    + '<section class="stack" style="gap:10px">'
+      + '<div class="row" style="justify-content:space-between">'
+        + '<h2>ערכת חירום</h2>'
+        + '<button class="btn ghost" data-go="learn:basics" style="min-height:36px;padding:6px 12px">כל המשפטים</button>'
+      + '</div>'
+      + '<div class="items">' + top.map(i=>itemRow(i)).join("") + '</div>'
+    + '</section>'
+
+    + '<section class="panel stack" style="gap:8px">'
+      + '<span class="eyebrow">קיצורי דרך</span>'
+      + '<div class="row">'
+        + '<button class="btn" data-go="drill:quiz">חידון מהיר</button>'
+        + '<button class="btn" data-go="drill:listen">תרגול האזנה</button>'
+        + '<button class="btn" data-go="tones:">טונים</button>'
+      + '</div>'
+    + '</section>'
+  + '</div>';
+}
+
+/* ---------- לימוד ---------- */
+function viewLearn(){
+  const g = GROUPS.find(x=>x.key===route.group) || GROUPS[0];
+  const phraseGroups = GROUPS.filter(x=>x.kind==="p");
+  const wordGroups = GROUPS.filter(x=>x.kind==="w");
+  const seg = (list) => '<div class="segmented">' + list.map(x =>
+      '<button data-group="'+x.key+'" aria-pressed="'+(x.key===g.key)+'">'+x.icon+' '+x.label+'</button>'
+    ).join("") + '</div>';
+
+  return '<div class="stack">'
+    + '<div class="stack" style="gap:8px">'
+      + '<span class="eyebrow">משפטים לשטח</span>' + seg(phraseGroups)
+      + '<span class="eyebrow" style="margin-top:6px">אוצר מילים</span>' + seg(wordGroups)
+    + '</div>'
+    + '<div class="row" style="justify-content:space-between">'
+      + '<h2>'+g.icon+' '+g.label+'</h2>'
+      + '<span class="chip"><b>'+g.items.length+'</b> פריטים</span>'
+    + '</div>'
+    + '<div class="row">'
+      + '<button class="btn ghost" data-toggle="showTranslit" style="min-height:38px;padding:7px 12px">'+(state.showTranslit?"הסתר תעתיק":"הצג תעתיק")+'</button>'
+      + '<button class="btn ghost" data-toggle="showMean" style="min-height:38px;padding:7px 12px">'+(state.showMean?"הסתר תרגום":"הצג תרגום")+'</button>'
+      + '<button class="btn ghost" data-playall="'+esc(g.key)+'" style="min-height:38px;padding:7px 12px">▶ השמע הכל</button>'
+    + '</div>'
+    + '<div class="items">' + g.items.map(i=>itemRow(i,{showBox:true})).join("") + '</div>'
+  + '</div>';
+}
+
+/* ---------- תרגול: כרטיסיות ---------- */
+let flash = null;
+function startFlash(){
+  const due = shuffle(dueItems().map(i=>i.id));
+  const fresh = shuffle(newItems().map(i=>i.id)).slice(0, newLeftToday());
+  flash = {queue: due.concat(fresh), done:0, total: due.length+fresh.length, revealed:false};
+}
+function viewFlash(){
+  if(!flash) startFlash();
+  if(!flash.queue.length){
+    return '<div class="empty"><span class="big">✓</span>'
+      + '<p>אין כרטיסים לחזרה כרגע.</p>'
+      + '<div class="row" style="justify-content:center">'
+      + '<button class="btn" data-flash="starred">תרגל את המסומנים ★</button>'
+      + '<button class="btn" data-flash="random">20 כרטיסים אקראיים</button>'
+      + '</div></div>';
+  }
+  const it = byId[flash.queue[0]];
+  const r = resolve(it);
+  const c = cardState(it.id);
+  const pct = flash.total ? Math.round(100*flash.done/flash.total) : 0;
+
+  return '<div class="stack">'
+    + '<div class="progress"><i style="width:'+pct+'%"></i></div>'
+    + '<div class="row" style="justify-content:space-between">'
+      + '<span class="sub">נותרו '+flash.queue.length+'</span>'
+      + '<span class="pill">'+(c ? "קופסה "+c.b : "חדש")+'</span>'
+    + '</div>'
+    + '<section class="panel lift stack" style="gap:14px;align-items:center;text-align:center;padding:26px 18px">'
+      + '<div class="thai '+thSize(r.th)+'">'+esc(r.th)+'</div>'
+      + speakBtns(r.th)
+      + (flash.revealed
+          ? '<div class="stack" style="gap:6px;align-items:center">'
+            + '<div class="translit" style="font-size:1.05rem">'+translitHTML(r.he,r.t)+'</div>'
+            + '<div class="meaning" style="font-size:1.25rem;font-weight:700">'+esc(r.mean)+'</div>'
+            + '<div class="lit">'+esc(it.groupLabel)+'</div>'
+          + '</div>'
+          : '<button class="btn big" data-reveal="1">גלה תשובה</button>')
+    + '</section>'
+    + (flash.revealed
+        ? '<div class="row" style="flex-wrap:nowrap">'
+          + '<button class="btn bad" data-ans="0" style="flex:1">לא ידעתי</button>'
+          + '<button class="btn good" data-ans="1" style="flex:1">ידעתי</button>'
+        + '</div>'
+        : '')
+    + '<div class="row" style="justify-content:center">'
+      + '<button class="star'+(state.star[it.id]?" on":"")+'" data-star="'+esc(it.id)+'" aria-pressed="'+(!!state.star[it.id])+'">★ קשה לי</button>'
+    + '</div>'
+  + '</div>';
+}
+
+/* ---------- תרגול: חידון והאזנה ---------- */
+let quiz = null;
+function scopePool(){
+  if(route.quizScope==="all") return ITEMS;
+  if(route.quizScope==="star") return ITEMS.filter(i=>state.star[i.id]);
+  if(route.quizScope==="learning") return ITEMS.filter(i=>cardState(i.id));
+  const g = GROUPS.find(x=>x.key===route.quizScope);
+  return g ? g.items : ITEMS;
+}
+function nextQuestion(listen){
+  const pool = scopePool();
+  if(pool.length < 4) return null;
+  const target = pool[Math.floor(Math.random()*pool.length)];
+  const others = sample(pool, 3, target);
+  const dir = listen ? "listen" : (Math.random()<0.5 ? "he2th" : "th2he");
+  return {target, options: shuffle([target].concat(others)), dir, picked:null};
+}
+function startQuiz(listen){
+  quiz = {listen:!!listen, q:null, score:0, run:0, best:state.quizBest, n:0};
+  quiz.q = nextQuestion(listen);
+}
+function viewQuiz(listen){
+  if(!quiz || quiz.listen!==!!listen) startQuiz(listen);
+  const scopes = [{key:"all",label:"הכל"},{key:"learning",label:"בלמידה"},{key:"star",label:"מסומן ★"}]
+    .concat(GROUPS.map(g=>({key:g.key,label:g.label})));
+  const head = '<div class="segmented">' + scopes.map(s =>
+      '<button data-scope="'+s.key+'" aria-pressed="'+(route.quizScope===s.key)+'">'+s.label+'</button>').join("") + '</div>';
+
+  if(listen && !voiceReady()) return '<div class="stack">'+head+voiceNoticeHTML(true)+'</div>';
+  if(!quiz.q) return '<div class="stack">'+head+'<div class="empty">צריך לפחות 4 פריטים בקבוצה הזאת לחידון.</div></div>';
+
+  const q = quiz.q, r = resolve(q.target);
+  const prompt = q.dir==="listen"
+    ? '<div class="stack" style="gap:12px;align-items:center">'
+      + '<button class="speak on" data-say="'+esc(r.th)+'" style="width:90px;height:90px;border-radius:50%;font-size:2rem">🔊</button>'
+      + '<button class="btn ghost" data-say="'+esc(r.th)+'" data-slow="1" style="min-height:36px;padding:6px 14px">השמע לאט</button>'
+      + '</div>'
+    : q.dir==="th2he"
+      ? '<div class="stack" style="gap:10px;align-items:center"><div class="thai '+thSize(r.th)+'">'+esc(r.th)+'</div>'+speakBtns(r.th)+'</div>'
+      : '<div class="meaning" style="font-size:1.5rem;font-weight:700;text-align:center">'+esc(r.mean)+'</div>';
+
+  const optHTML = q.options.map(o=>{
+    const ro = resolve(o);
+    const label = (q.dir==="he2th")
+      ? '<span class="thai md">'+esc(ro.th)+'</span>'+(state.showTranslit?' <span class="translit">'+translitHTML(ro.he,ro.t)+'</span>':"")
+      : esc(ro.mean);
+    let cls = "btn";
+    if(q.picked){
+      if(o.id===q.target.id) cls += " good";
+      else if(o.id===q.picked) cls += " bad";
+    }
+    return '<button class="'+cls+'" data-opt="'+esc(o.id)+'" style="width:100%;justify-content:center;text-align:center">'+label+'</button>';
+  }).join("");
+
+  return '<div class="stack">'
+    + head
+    + '<div class="row" style="justify-content:space-between">'
+      + '<span class="chip">ניקוד <b>'+quiz.score+'</b> מתוך <b>'+quiz.n+'</b></span>'
+      + '<span class="chip">רצף <b>'+quiz.run+'</b> · שיא <b>'+Math.max(state.quizBest,quiz.run)+'</b></span>'
+    + '</div>'
+    + '<section class="panel lift" style="padding:24px 18px">'+prompt+'</section>'
+    + '<div class="stack" style="gap:8px">'+optHTML+'</div>'
+    + (q.picked
+        ? '<section class="panel stack" style="gap:6px">'
+          + '<div class="thai lg">'+esc(r.th)+'</div>'
+          + '<div class="translit">'+translitHTML(r.he,r.t)+'</div>'
+          + '<div class="meaning">'+esc(r.mean)+'</div>'
+          + '<button class="btn primary big" data-next="1">הבא</button>'
+        + '</section>'
+        : '')
+  + '</div>';
+}
+
+/* ---------- שיחות ---------- */
+function viewTalk(){
+  if(!route.dialog){
+    return '<div class="stack">'
+      + '<h2>שיחות לפי מצב</h2>'
+      + '<p class="sub" style="margin:0">כל שיחה בנויה ממשפטים שכבר קיימים באוצר המילים. השורות שלך מסומנות ב־<b>אתה</b>.</p>'
+      + '<div class="items">' + DIALOGS.map(d =>
+          '<button class="item" data-dialog="'+d.key+'" style="text-align:start;cursor:pointer;width:100%">'
+          + '<div class="txt"><div class="meaning">'+d.icon+' '+esc(d.label)+'</div>'
+          + '<div class="lit">'+d.lines.length+' שורות</div></div><div class="sub">‹</div></button>'
+        ).join("") + '</div>'
+    + '</div>';
+  }
+  const d = DIALOGS.find(x=>x.key===route.dialog);
+  const lines = d.lines.map(l=>{
+    const it = {raw:l[1], he:l[2], t:l[3], mean:l[4]};
+    const r = resolve(it);
+    const me = l[0]==="me";
+    return '<div class="line'+(me?" me":"")+'">'
+      + '<div class="who">'+(me?"אתה":"הם")+'</div>'
+      + '<div class="body">'
+        + '<div class="thai md">'+esc(r.th)+'</div>'
+        + (state.showTranslit?'<div class="translit">'+translitHTML(r.he,r.t)+'</div>':"")
+        + (state.showMean?'<div class="meaning" style="font-size:.96rem">'+esc(r.mean)+'</div>':"")
+      + '</div>'
+      + '<button class="speak" data-say="'+esc(r.th)+'" aria-label="השמע">🔊</button>'
+    + '</div>';
+  }).join("");
+  const all = d.lines.map(l=>resolve({raw:l[1],he:l[2],t:l[3],mean:l[4]}).th);
+
+  return '<div class="stack">'
+    + '<button class="btn ghost" data-dialog="" style="align-self:flex-start;min-height:38px;padding:6px 12px">› כל השיחות</button>'
+    + '<h2>'+d.icon+' '+esc(d.label)+'</h2>'
+    + '<div class="row">'
+      + '<button class="btn" data-seq="'+esc(all.join("|"))+'">▶ השמע את כל השיחה</button>'
+      + '<button class="btn ghost" data-toggle="showMean" style="padding:7px 12px;min-height:38px">'+(state.showMean?"הסתר תרגום":"הצג תרגום")+'</button>'
+    + '</div>'
+    + '<section class="panel">'+lines+'</section>'
+  + '</div>';
+}
+
+/* ---------- טונים ---------- */
+let toneQ = null;
+function nextTone(){
+  const set = TONE_SETS[Math.floor(Math.random()*TONE_SETS.length)];
+  const target = set.items[Math.floor(Math.random()*set.items.length)];
+  toneQ = {set, target, picked:null};
+}
+function viewTones(){
+  const legend = '<div class="panel stack" style="gap:8px">'
+    + '<span class="eyebrow">חמשת הטונים</span>'
+    + '<div class="row" style="gap:12px">' + TONE_NAME.map((n,i)=>
+        '<span><span class="tone t'+i+'" style="font-size:1.1rem;vertical-align:0">'+TONE_GLYPH[i]+'</span> '+n+(i===0?" (ללא סימן)":"")+'</span>').join("") + '</div>'
+    + '<p class="sub" style="margin:0">הסימן מופיע אחרי כל הברה בתעתיק. בתאית הטון הוא חלק מהמילה — מילה באותו תעתיק ובטון אחר היא מילה אחרת לגמרי.</p>'
+  + '</div>';
+
+  const stats = Object.keys(state.toneStats).length
+    ? '<div class="stats" style="grid-template-columns:repeat(5,1fr);gap:5px">' + TONE_NAME.map((n,i)=>{
+        const s = state.toneStats[i] || {ok:0,n:0};
+        const p = s.n ? Math.round(100*s.ok/s.n) : 0;
+        return '<div class="stat" style="padding:9px 4px"><div class="n" style="font-size:1.02rem">'+(s.n?p+"%":"—")+'</div><div class="l" style="font-size:.67rem">'+n+'</div></div>';
+      }).join("") + '</div>'
+    : "";
+
+  let quizHTML = "";
+  if(!voiceReady()){
+    quizHTML = voiceNoticeHTML(true);
+  }else{
+    if(!toneQ) nextTone();
+    const opts = toneQ.set.items.map(o=>{
+      let cls="btn";
+      if(toneQ.picked){
+        if(o[0]===toneQ.target[0]) cls+=" good";
+        else if(o[0]===toneQ.picked) cls+=" bad";
+      }
+      return '<button class="'+cls+'" data-tone="'+esc(o[0])+'" style="width:100%;justify-content:space-between">'
+        + '<span class="thai md">'+esc(o[0])+'</span>'
+        + '<span>'+translitHTML(o[1],o[2])+'</span>'
+        + '<span class="sub">'+esc(o[3])+'</span></button>';
+    }).join("");
+    quizHTML = '<section class="stack" style="gap:10px">'
+      + '<div class="row" style="justify-content:space-between"><h2>איזו מילה שמעת?</h2>'
+      + '<span class="pill">'+mixed(toneQ.set.title)+'</span></div>'
+      + '<div class="panel lift" style="display:grid;place-items:center;padding:22px">'
+        + '<button class="speak on" data-say="'+esc(toneQ.target[0])+'" style="width:86px;height:86px;border-radius:50%;font-size:1.9rem">🔊</button>'
+        + '<button class="btn ghost" data-say="'+esc(toneQ.target[0])+'" data-slow="1" style="margin-top:10px;min-height:36px;padding:6px 14px">לאט</button>'
+      + '</div>'
+      + '<div class="stack" style="gap:8px">'+opts+'</div>'
+      + (toneQ.picked ? '<button class="btn primary big" data-tonenext="1">הבא</button>' : "")
+    + '</section>';
+  }
+
+  const pron = PRON_SETS.map(s =>
+    '<section class="panel stack" style="gap:8px">'
+    + '<h3>'+mixed(s.title)+'</h3>'
+    + '<div class="items">' + s.items.map(i =>
+        '<div class="item"><div class="txt">'
+        + '<div class="thai md">'+esc(i[0])+'</div>'
+        + '<div class="translit">'+translitHTML(i[1],i[2])+'</div>'
+        + '<div class="meaning">'+esc(i[3])+'</div></div>'
+        + speakBtns(i[0]) + '</div>').join("") + '</div>'
+  + '</section>').join("");
+
+  const key = '<section class="panel stack" style="gap:6px">'
+    + '<span class="eyebrow">מקרא התעתיק</span>'
+    + '<p class="sub" style="margin:0">ק=k · כ=kh נשוף · ט=t · ת=th נשוף · פּ=p · פ=ph נשוף / f · בּ=b · ג׳=j · צ׳=ch · נג=ng. '
+    + 'ההבדל בין נשוף ללא־נשוף חשוב: הקשב לזוגות למטה.</p>'
+  + '</section>';
+
+  return '<div class="stack">' + legend + stats + quizHTML
+    + '<h2 style="margin-top:6px">הגייה שקשה לדוברי עברית</h2>' + key + pron + '</div>';
+}
+
+/* ---------- תרגול: מעטפת ---------- */
+function viewDrill(){
+  const modes = [{k:"flash",l:"כרטיסיות"},{k:"quiz",l:"חידון"},{k:"listen",l:"האזנה"}];
+  const head = '<div class="segmented">' + modes.map(m =>
+    '<button data-mode="'+m.k+'" aria-pressed="'+(route.mode===m.k)+'">'+m.l+'</button>').join("") + '</div>';
+  const body = route.mode==="flash" ? viewFlash()
+             : route.mode==="quiz"  ? viewQuiz(false)
+             : viewQuiz(true);
+  return '<div class="stack">'+head+body+'</div>';
+}
+
+function render(){
+  renderTabs();
+  const el = route.tab==="home" ? viewHome()
+           : route.tab==="learn" ? viewLearn()
+           : route.tab==="drill" ? viewDrill()
+           : route.tab==="talk" ? viewTalk()
+           : viewTones();
+  view.innerHTML = el;
+  const chip = document.getElementById("streakChip");
+  chip.hidden = !state.streak.n;
+  document.getElementById("streakN").textContent = state.streak.n;
+  window.scrollTo({top:0, behavior:"instant"});
+}
+function updateVoiceNotice(){
+  if(document.getElementById("voiceNotice") || route.tab==="tones" || route.mode==="listen") render();
+}
+
+/* ============================================================
+   אירועים
+   ============================================================ */
+function reRender(reset){
+  const y = window.scrollY;
+  render();
+  if(!reset) window.scrollTo(0, y);
+}
+
+document.addEventListener("click", (e)=>{
+  const t = e.target.closest("[data-say],[data-star],[data-tab],[data-go],[data-group],[data-toggle],"
+    + "[data-playall],[data-mode],[data-reveal],[data-ans],[data-flash],[data-scope],[data-opt],"
+    + "[data-next],[data-dialog],[data-seq],[data-tone],[data-tonenext],[data-set],[data-theme-set],[data-close],[data-reset]");
+  if(!t) return;
+  const d = t.dataset;
+
+  if(d.say !== undefined){ speak(d.say, d.slow==="1"); return; }
+
+  if(d.star !== undefined){
+    state.star[d.star] = !state.star[d.star];
+    if(!state.star[d.star]) delete state.star[d.star];
+    save(); reRender(); return;
+  }
+  if(d.tab !== undefined){ route.tab = d.tab; route.dialog = null; render(); return; }
+  if(d.go !== undefined){
+    const [tab, sub] = d.go.split(":");
+    route.tab = tab;
+    if(tab==="drill" && sub) route.mode = sub;
+    if(tab==="learn" && sub) route.group = sub;
+    render(); return;
+  }
+  if(d.group !== undefined){ route.group = d.group; render(); return; }
+  if(d.toggle !== undefined){
+    state[d.toggle] = !state[d.toggle]; save(); reRender();
+    if(document.getElementById("sheetBg")) openSettings();
+    return;
+  }
+  if(d.playall !== undefined){
+    const g = GROUPS.find(x=>x.key===d.playall);
+    if(g) speakSeq(g.items.map(i=>resolve(i).th));
+    return;
+  }
+  if(d.mode !== undefined){ route.mode = d.mode; render(); return; }
+
+  if(d.reveal !== undefined){ flash.revealed = true; reRender(); return; }
+  if(d.ans !== undefined){
+    const id = flash.queue[0], ok = d.ans==="1";
+    answerCard(id, ok);
+    flash.queue.shift();
+    if(!ok) flash.queue.push(id); else flash.done++;
+    flash.revealed = false;
+    reRender(true); return;
+  }
+  if(d.flash !== undefined){
+    const pool = d.flash==="starred"
+      ? ITEMS.filter(i=>state.star[i.id])
+      : shuffle(ITEMS).slice(0,20);
+    flash = {queue: shuffle(pool.map(i=>i.id)), done:0, total:pool.length, revealed:false};
+    reRender(true); return;
+  }
+
+  if(d.scope !== undefined){ route.quizScope = d.scope; startQuiz(route.mode==="listen"); reRender(true); return; }
+  if(d.opt !== undefined){
+    if(quiz.q.picked) return;
+    quiz.q.picked = d.opt;
+    quiz.n++;
+    const ok = d.opt === quiz.q.target.id;
+    if(ok){ quiz.score++; quiz.run++; if(quiz.run>state.quizBest){ state.quizBest = quiz.run; } }
+    else quiz.run = 0;
+    answerCard(quiz.q.target.id, ok);
+    if(!ok) speak(resolve(quiz.q.target).th);
+    reRender(); return;
+  }
+  if(d.next !== undefined){
+    quiz.q = nextQuestion(quiz.listen);
+    reRender(true);
+    if(quiz.listen && quiz.q) setTimeout(()=>speak(resolve(quiz.q.target).th), 250);
+    return;
+  }
+
+  if(d.dialog !== undefined){ route.dialog = d.dialog || null; render(); return; }
+  if(d.seq !== undefined){ speakSeq(d.seq.split("|")); return; }
+
+  if(d.tone !== undefined){
+    if(toneQ.picked) return;
+    toneQ.picked = d.tone;
+    const tone = +toneQ.target[2];
+    const s = state.toneStats[tone] || {ok:0,n:0};
+    s.n++; if(d.tone===toneQ.target[0]) s.ok++;
+    state.toneStats[tone] = s;
+    bumpStreak(); save(); reRender(); return;
+  }
+  if(d.tonenext !== undefined){
+    nextTone(); reRender(true);
+    setTimeout(()=>speak(toneQ.target[0]), 250);
+    return;
+  }
+
+  if(d.set !== undefined){
+    const [k,v] = d.set.split(":");
+    state[k] = (k==="newPerDay") ? +v : v;
+    save(); openSettings(); reRender(); return;
+  }
+  if(d.themeSet !== undefined){
+    state.theme = d.themeSet; applyTheme(); save(); openSettings(); return;
+  }
+  if(d.close !== undefined){ closeSettings(); return; }
+  if(d.reset !== undefined){
+    if(confirm("לאפס את כל ההתקדמות? הפעולה לא הפיכה.")){
+      state = defaults(); applyTheme(); save(); flash=null; quiz=null; toneQ=null;
+      closeSettings(); render();
+    }
+    return;
+  }
+});
+
+/* ============================================================
+   הגדרות
+   ============================================================ */
+function applyTheme(){
+  const th = state.theme || "auto";
+  if(th==="auto") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", th);
+}
+function sw(key, label, note){
+  const on = !!state[key];
+  return '<div class="setting"><div class="lab">'+label+(note?'<small>'+note+'</small>':"")+'</div>'
+    + '<button class="switch" role="switch" aria-checked="'+on+'" aria-label="'+label+'" data-toggle="'+key+'"><i></i></button></div>';
+}
+function openSettings(){
+  closeSettings();
+  const seg = (name, opts, cur, attr) => '<div class="segmented" style="flex:0 0 auto">'
+    + opts.map(o=>'<button '+attr+'="'+o.v+'" aria-pressed="'+(cur===o.v)+'">'+o.l+'</button>').join("") + '</div>';
+
+  const html = '<div class="sheet-bg" id="sheetBg" data-close="1">'
+    + '<div class="sheet" role="dialog" aria-label="הגדרות" onclick="event.stopPropagation()">'
+      + '<div class="row" style="justify-content:space-between;margin-bottom:6px">'
+        + '<h2>הגדרות</h2><button class="iconbtn" data-close="1" aria-label="סגור">✕</button></div>'
+
+      + '<div class="setting"><div class="lab">חלקיק נימוס<small>ครับ לגבר · ค่ะ לאישה — משנה גם את ההקראה</small></div>'
+        + seg("gender",[{v:"gender:m",l:"ครับ"},{v:"gender:f",l:"ค่ะ"}], "gender:"+state.gender, "data-set") + '</div>'
+
+      + sw("showTranslit","הצג תעתיק עברי")
+      + sw("showMean","הצג תרגום")
+
+      + '<div class="setting"><div class="lab">מילים חדשות ביום<small>נשארו היום: '+newLeftToday()+'</small></div>'
+        + seg("newPerDay",[5,10,20,30,50].map(n=>({v:"newPerDay:"+n,l:String(n)})), "newPerDay:"+state.newPerDay, "data-set") + '</div>'
+
+      + '<div class="setting"><div class="lab">ערכת נושא</div>'
+        + seg("theme",[{v:"auto",l:"אוטומטי"},{v:"light",l:"בהיר"},{v:"dark",l:"כהה"}], state.theme||"auto", "data-theme-set") + '</div>'
+
+      + '<div class="setting"><div class="lab">בדיקת קול<small>'
+        + (voiceReady() ? "נמצא קול תאי: "+esc(thVoice.name||"th-TH") : "לא נמצא קול תאי במכשיר")
+        + '</small></div><button class="btn" data-say="สวัสดีครับ ยินดีต้อนรับ">🔊 נסה</button></div>'
+
+      + '<div class="setting"><div class="lab">התקדמות<small>'
+        + (remoteDoc ? "מסתנכרנת בין המכשירים שלך" : "נשמרת בדפדפן הזה")
+        + '</small></div><button class="btn bad" data-reset="1">איפוס</button></div>'
+
+      + '<p class="sub" style="margin:14px 0 0;font-size:.8rem">התוכן נכתב לפי תאית מדוברת יומיומית. שווה לאמת מול דובר יליד לפני שנשענים על משפט חשוב.</p>'
+    + '</div></div>';
+  document.body.insertAdjacentHTML("beforeend", html);
+}
+function closeSettings(){
+  const s = document.getElementById("sheetBg");
+  if(s) s.remove();
+}
+document.getElementById("btnSettings").addEventListener("click", openSettings);
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeSettings(); });
+
+/* ============================================================
+   הפעלה
+   ============================================================ */
+applyTheme();
+if(state.today.date !== todayStr()) state.today = {date:todayStr(), newN:0};
+render();
+initRemote();
+</script>
