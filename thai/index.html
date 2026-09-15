@@ -654,7 +654,7 @@ async function initRemote(){
   try{
     const db = window.claude && window.claude.use ? await window.claude.use("db") : null;
     if(!db) return;
-    remoteDoc = db.doc("data/users/me/progress");
+    remoteDoc = db.doc("progress/main");
     const snap = await remoteDoc.get();
     const data = snap && (snap.data || snap.value || (snap.exists===false ? null : snap));
     if(data && typeof data==="object" && (data.ts||0) > (state.ts||0)){
